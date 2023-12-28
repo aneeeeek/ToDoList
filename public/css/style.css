@@ -1,0 +1,69 @@
+h1 {
+    font-family: 'Your Elegant Font', sans-serif; /* Замените 'Your Elegant Font' на желаемый элегантный шрифт */
+    color: #ff66b2; /* Розовый цвет текста */
+    text-align: center; /* Выравнивание по центру, если нужно */
+    text-transform: uppercase; /* Преобразование текста в верхний регистр */
+    letter-spacing: 2px; /* Расстояние между буквами */
+    margin: 20px 0; /* Внешние отступы сверху и снизу */
+    -webkit-text-stroke: 0.5px #fff; /* Обводка текста белым цветом для браузеров, использующих WebKit (Chrome, Safari, и др.) */
+    
+  }
+  
+  body {
+    background: radial-gradient(ellipse at center,#ffd6ed, #fff6fe);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Высота экрана */
+    margin: 0;
+  }
+  
+  .input-container {
+    text-align: center; /* Центрирование содержимого внутри контейнера */
+  }
+  
+  input[type="text"] {
+    width: 390px; /* Ширина текстового поля */
+    padding: 10px; /* Внутренний отступ вокруг текста */
+    border: 2px solid #ff66b2; /* Розовая рамка вокруг поля ввода */
+    border-radius: 5px; /* Закругление углов */
+    font-family: 'Your Elegant Font', sans-serif; /* Шрифт */
+    color: #555; /* Цвет текста */
+  }
+  
+  button[type="submit"] {
+    width: 100px; /* Ширина кнопки, чтобы немного превышала ширину поля ввода */
+    margin-top: 10px; /* Внешний отступ сверху для разделения от текстового поля */
+    padding: 10px; /* Внутренний отступ вокруг текста */
+    background-color: #ff66b2; /* Розовый цвет фона */
+    color: #fff; /* Белый цвет текста */
+    border: none; /* Убрать границу */
+    border-radius: 5px; /* Закругление углов */
+    cursor: pointer; /* Изменение курсора при наведении */
+    font-family: 'Your Elegant Font', sans-serif; /* Шрифт */
+  }
+  
+  /* При наведении на кнопку */
+  button[type="submit"]:hover {
+    background-color: #ff3385; /* Изменение цвета фона при наведении */
+  }
+
+  .todo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+
+  .todo-value {
+    flex: 1;
+    /* Добавьте стили для текста, если необходимо */
+  }
+  
+
+
+  

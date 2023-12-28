@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>TO-DO list</title>
+</head>
+<body>
+    <div class="container">
+        <h1>ToDoList</h1>
+        <form action="/" method="post" autocomplete="off" class=".form-wrapper">
+            <input type="text" placeholder="Add todos..." name="todoValue" required>
+            <button type="submit">add</button>
+        </form>
+        <div>
+            <button type="submit" class="filter_all">all</button>
+            <button type="submit" class="filter_active">active</button>
+            <button type="submit" class="filter_completed">completed</button>
+            <button type="submit" class="filterByDate_new">new</button>
+            <button type="submit" class="filterByDate_old">old</button>
+        </div>
+
+        <% if(data) { %>
+                <% data.forEach(todoValue => { %>
+                        <div class="todo-container">
+                            <div class="todo-checkbox">
+                                <input type="checkbox" name="checked" class="todo-checkbox-input <%= todoValue.id %>" 
+                                <% if(todoValue.check === true) { %>
+                                    checked
+                                  <% } %>
+                                >
+                            </div>   
+                            <div class="todo-value">
+                                <%= todoValue.todo %> 
+                                <%= todoValue.datetime.getDate()  + '.' + (todoValue.datetime.getMonth()+1) + '.' + todoValue.datetime.getFullYear() + ' ' + todoValue.datetime.getHours() + ':' + todoValue.datetime.getMinutes()%>
+                            </div>
+                            <div>
+                                <button class="todo-delete <%= todoValue.id %>">Delete</button>
+                            </div>
+                        </div>
+                <% }) %>
+        <% } %>
+    </div>
+
+    <script>
+        const deleteButton = document.querySelectorAll(".todo-delete")
+        const checkboxButtons = document.querySelectorAll(".todo-checkbox-input")
+
+        const filterByDateNewButton = document.querySelectorAll(".filterByDate_new")
+
+        filterByDateNewButton.forEach((button, i)=>{
+            button.addEventListener("click", () => {
+                const endPoint = `/filterByDate_new`
+                fetch(endPoint, {
+                    method: "POST"
+                })
+                //window.location.href = "/"
+            })
+        })
+
+        const filterByDateOldButton = document.querySelectorAll(".filterByDate_old")
+
+        filterByDateOldButton.forEach((button, i)=>{
+            button.addEventListener("click", () => {
+                const endPoint = `/filterByDate_old`
+                fetch(endPoint, {
+                    method: "POST"
+                })
+                //window.location.href = "/"
+            })
+        })
+
+        const filterActiveButton = document.querySelectorAll(".filter_active")
+        filterActiveButton.forEach((button, i)=>{
+            button.addEventListener("click", () => {
+                const endPoint = `/filter_active`
+                fetch(endPoint, {
+                    method: "POST"
+                })
+                //window.location.href = "/"
+            })
+        })
+
+        const filterCompletedButton = document.querySelectorAll(".filter_completed")
+        filterCompletedButton.forEach((button, i)=>{
+            button.addEventListener("click", () => {
+                const endPoint = `/filter_completed`
+                fetch(endPoint, {
+                    method: "POST"
+                })
+                //window.location.href = "/"
+            })
+        })
+// ----------------------------------------------------------------------
+        checkboxButtons.forEach((checkbox, i) => {
+            checkbox.addEventListener('change', () => {
+                const endPoint = `/complete/${checkbox.classList[1]}`
+                fetch(endPoint, {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        isCheck: checkbox.checked,
+                    })
+                })
+            })
+        })
+
+        deleteButton.forEach((button, i)=>{
+            button.addEventListener("click", () => {
+                const endPoint = `/${button.classList[1]}`
+                fetch(endPoint, {
+                    method: "DELETE"
+                })
+                window.location.href = "/"
+            })
+        })
+    </script>
+</body>
+</html>
