@@ -14,11 +14,11 @@
             <button type="submit">add</button>
         </form>
         <div>
-            <button type="submit" class="filter_all">all</button>
-            <button type="submit" class="filter_active">active</button>
-            <button type="submit" class="filter_completed">completed</button>
-            <button type="submit" class="filterByDate_new">new</button>
-            <button type="submit" class="filterByDate_old">old</button>
+            <button type="button" class="filter_all">all</button>
+            <button type="button" class="filter_active">active</button>
+            <button type="button" class="filter_completed">completed</button>
+            <button type="button" class="filterByDate_new">new</button>
+            <button type="button" class="filterByDate_old">old</button>
         </div>
 
         <% if(data) { %>
@@ -82,14 +82,18 @@
             })
         })
 
+        // Смотри здесь пример
+        // Как сделать: querySelectorAll по классу "Кнопка фильтрации", endPoint - 
         const filterCompletedButton = document.querySelectorAll(".filter_completed")
-        filterCompletedButton.forEach((button, i)=>{
-            button.addEventListener("click", () => {
+        filterCompletedButton.forEach((button, i) => {
+            button.id;
+            button.addEventListener("click", async () => {
                 const endPoint = `/filter_completed`
-                fetch(endPoint, {
-                    method: "POST"
-                })
-                //window.location.href = "/"
+                const response = await fetch(endPoint, {method: "GET"})
+                if (response.ok) {
+                    const responseText = await response.text()
+                    window.document.documentElement.innerHTML = responseText
+                }
             })
         })
 // ----------------------------------------------------------------------
